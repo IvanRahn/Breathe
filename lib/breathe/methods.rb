@@ -4,23 +4,11 @@ def greeting
 end
 
 #main menu method
-def
+def menu
   puts "What would you like to keep an eye on today?"
-  Did you smoke in the last 24 hours?
-    How many cigarettes did you smoke in the last 24 hours? (give range)
+  # Did you smoke in the last 24 hours?
+  #   How many cigarettes did you smoke in the last 24 hours? (give range)
 
-  if no...Did you have any cravings to smoke today? 
-    ....How would you rate your mood today.(give range)
-
-
-end
-
-
-
-
-
-
-
-
-
+  # if no...Did you have any cravings to smoke today?
+  #   ....How would you rate your mood today.(give range)
 end
