@@ -1,7 +1,9 @@
+#creating user class
 class User
-  attr_accessor :name
+  attr_accessor :username, :log
 
-  def initialize(name)
-    @username = name
+  def initialize(username)
+    @username = username
+    @log = []
   end
 end
