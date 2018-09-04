@@ -2,6 +2,10 @@ require_relative "breathe/methods"
 require_relative "breathe/classes"
 
 greeting
-smoker = User.new(gets.chomp)
 
+name = gets.chomp
+smoker = retrieve_data(name)
+puts smoker.log
 menu(smoker)
+
+save_to_file(smoker)

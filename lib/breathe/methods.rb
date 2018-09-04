@@ -1,4 +1,8 @@
 require_relative "classes"
+require_relative "json_to_hash"
+require "date"
+require "json"
+require "Oj"
 
 #greeting method and personalisation
 def greeting
@@ -12,11 +16,33 @@ def menu(smoker_name)
   if gets.chomp == "Y"
     puts "How many cigarettes have you smoked today?"
     cigarette_amount = gets.chomp.to_i
-    smoker_name.log << 1
+    smoker_name.log[Date.today.iso8601] = cigarette_amount
+    puts "You failed!"
   else
     puts "Well done! Keep up the amazing work #{smoker_name.username}!"
-    smoker_name.log << 0
+    smoker_name.log[Date.today.iso8601] = 0
   end
+end
+
+def existing?(smoker)
+  File.file?("#{smoker}")
+end
+
+def retrieve_data(smoker)
+  existing?(smoker) ? smoker = read_from_file(smoker) : smoker = User.new(smoker)
+  smoker
+end
+
+#save object to a file
+def save_to_file(object)
+  File.open("#{object.username}", "w") { |file|
+    file.write Oj::dump object
+  }
+end
+
+#read file
+def read_from_file(smoker)
+  smoker = Oj::load File.read("#{smoker}")
 end
 
 # Did you smoke in the last 24 hours?

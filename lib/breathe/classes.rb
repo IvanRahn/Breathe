@@ -4,6 +4,11 @@ class User
 
   def initialize(username)
     @username = username
-    @log = []
+    #we tried array first but decided to go with hash to have dates
+    @log = {}
+  end
+
+  def method
+    puts "yo"
   end
 end
