@@ -12,15 +12,24 @@ end
 #main menu method
 def menu(smoker_name)
   puts "#{smoker_name.username}, have you smoked today? Y/N"
+  response = gets.chomp.downcase
+  puts response
 
-  if gets.chomp == "Y"
+  if response == "y"
     puts "How many cigarettes have you smoked today?"
     cigarette_amount = gets.chomp.to_i
+
+    if cigarette_amount == 0
+      raise ArgumentError.new("Either you're lying or giving us incorrect input!")
+    end
+
     smoker_name.log[Date.today.iso8601] = cigarette_amount
-    puts "You failed!"
-  else
+    puts "You fucked up, #{smoker_name.username}!"
+  elsif response == "n"
     puts "Well done! Keep up the amazing work #{smoker_name.username}!"
     smoker_name.log[Date.today.iso8601] = 0
+  else
+    raise ArgumentError.new("Only Y or N")
   end
 end
 

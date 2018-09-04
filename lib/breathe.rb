@@ -3,8 +3,9 @@ require_relative "breathe/classes"
 
 greeting
 
-name = gets.chomp
+name = gets.chomp.downcase
 smoker = retrieve_data(name)
+
 puts smoker.log
 menu(smoker)
 
