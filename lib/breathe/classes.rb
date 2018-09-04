@@ -9,7 +9,7 @@ class User
   end
 
   def first(first)
-    if first == nil or first.size == 0 #or first != ~/(A-z0-9)+/
+    if first == nil or first.size == 0 or first =~ /\W+/
       raise ArgumentError.new("Everyone must have a valid name.")
     end
     first[0] = first[0].chr.capitalize
