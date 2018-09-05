@@ -3,10 +3,10 @@ require_relative "breathe/classes"
 
 greeting
 
-name = gets.chomp.downcase
-smoker = retrieve_data(name)
+customer = File_operations.new(gets.chomp).retrieve_data
 
-puts smoker.log
-menu(smoker)
+puts customer.log
 
-save_to_file(smoker)
+smoking(customer)
+
+File_operations.new(customer).save_to_file
