@@ -28,7 +28,9 @@ def smoking(user)
   #rescue from the error: recurse the function
 rescue
   begin
-    puts "Something is wrong with your input"
+    system "clear"
+    puts "Something is wrong with your input, please try again"
+    sleep(0.5)
     smoking(user)
   end
 end
@@ -47,6 +49,9 @@ def cig_amount(user)
   puts "You f***d up, #{user.username}!"
   #rescue from the error: recurse the function
 rescue
+  system "clear"
+  puts "Something seems to be wrong with your input"
+  sleep(0.5)
   cig_amount(user)
 end
 

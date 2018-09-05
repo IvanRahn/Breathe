@@ -21,7 +21,7 @@ class User
   end
 
   def sum
-    puts "You have smoked #{log.values.inject { |a, b| a + b }} cigarettes to date! Shame on you!"
+    puts "You have smoked #{log.values.inject { |a, b| a.to_i + b.to_i }} cigarettes to date! Shame on you!"
   end
 end
 
