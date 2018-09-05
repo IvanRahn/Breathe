@@ -219,7 +219,7 @@ The following is the brainstorming process we undertook to come up with an idea.
 2. We identified 18 criteria in the Assessment Rubric and decided to base our brainstorming on meeting as much of this criteria as possible including criteria involving the idea solving a broader social problem
 3. Brainstorming process: We then undertook a brainstorming process called the Crazy 8s brainstorming process that is used in UX and design thinking and ideation processes. Due to time limitations, we amended this to a Crazy 3s ideation process; where both team partners on our own take a few minutes to come up with 3 radical ideas that we think meets the Assessment Criteria (uninfluenced by each other and to give autonomy to each other’s thinking processes). Then we wrote down each of these ideas and 1 by 1 shared our ideas with each other. We explained the rationale of each idea and after a short discussion, decided on 1 idea to proceed with that we were both happy with. We both decided to proceed with the idea that was purposeful and were passionate about.
   
-![Images show brainstorming and ideation](./docs/image7.jpg)
+![Images show brainstorming and ideation](https://github.com/IvanRahn/Breathe/blob/master/docs/image7.JPG)
 
 1. Getting approval of the idea: After we had decided on our idea, we did get approval from Bianca for the idea. Her advice was also to focus and narrow down on 1 problem (i.e smoking) to focus on for the app given the time restraints.
 2. Broader Social Impact of the Problem: Our idea is about enabling people to have positive lifestyle habits including tobacco smoking, alcohol consumption, physical inactivity and so on. These factors and others have been known to account for 32.3% of the total burden and injury on Australian Society. Our MVP is about enabling users to track key metrics related to their smoking habits. One of the team members is a smoker and being able to change this habit is important to him.
@@ -240,10 +240,10 @@ ________________
 * Step 3: Smoker downloads app and adds smoking habits himself
 
 
-![Images show smoking epic](./docs/image8.jpg)
-![Images show smoking epic](./docs/image9.jpg)
+![Images show smoking epic](https://raw.githubusercontent.com/IvanRahn/Breathe/master/docs/Image8.JPG)
+![Images show smoking epic](https://github.com/IvanRahn/Breathe/blob/master/docs/Image9.JPG)
 
-![Image of user input (green post it notes) matched with corresponding app workflow (pink post it notes)](./docs/image10.jpg)
+![Image of user input (green post it notes) matched with corresponding app workflow (pink post it notes)](https://github.com/IvanRahn/Breathe/blob/master/docs/image10.JPG)
 
 
 ![App User/Workflow diagram](./docs/workflow.png)
