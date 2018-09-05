@@ -20,8 +20,8 @@ class User
     name.capitalize!
     #catch the error and recurse the method until we get correct input
     #TODO move rescue to initial prompt
-  rescue
-    @name = name_check(gets.chomp)
+    # rescue
+    #   @name = name_check(gets.chomp)
   end
 end
 
