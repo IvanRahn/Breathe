@@ -8,4 +8,8 @@ describe "breathe" do
   it "should not accept empty name" do
     expect { User.new("") }.to raise_error(ArgumentError)
   end
+  it "should have class FileOperations" do
+    user = FileOperations.new("name")
+    expect(user).to be_an_instance_of(FileOperations)
+  end
 end
