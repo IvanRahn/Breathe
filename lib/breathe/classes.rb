@@ -18,14 +18,12 @@ class User
     end
     #capitalize the first letter of the name
     name.capitalize!
-    #catch the error and recurse the method until we get correct input
-    #TODO move rescue to initial prompt
-    # rescue
-    #   @name = name_check(gets.chomp)
+  end
+
+  def sum
+    puts "You have smoked #{log.values.inject { |a, b| a + b }} cigarettes to date! Shame on you!"
   end
 end
-
-#Class for methods to write/retrieve data
 
 class FileOperations
   attr_accessor :username

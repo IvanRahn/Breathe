@@ -37,11 +37,13 @@ end
 def cig_amount(user)
   puts "How many cigarettes have you smoked today?"
   cigarette_amount = gets.chomp
+
   #raise an error in case of incorrect input
   if cigarette_amount =~ /\D+/
     raise ArgumentError.new("Seems like you're giving us some incorrect input")
   end
   user.log[Date.today.iso8601] = cigarette_amount
+  user.sum
   puts "You f***d up, #{user.username}!"
   #rescue from the error: recurse the function
 rescue
