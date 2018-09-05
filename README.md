@@ -9,7 +9,7 @@ ________________
 ________________
 
 ### 2.1 Purpose
-The purpose of our app, Breathe is to enable people to live healthy lives. 
+The purpose of our app, Breathe, is to enable people to live healthy lives. 
 We aim to achieve this purpose by enabling users to track both negative and positive lifestyle habits e.g smoking, meals and meal purchases, gym workout sessions
 
 #### MVP
