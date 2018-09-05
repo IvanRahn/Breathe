@@ -1,6 +1,3 @@
-
-![Ivan & Nat BEFORE we knew what we were in for...](./docs/image1.jpg)
-
 # Breathe App
 ________________
 
@@ -8,7 +5,7 @@ ________________
 1. Ivan https://github.com/IvanRahn/Breathe
 2. Natasha https://github.com/natashamunasinghe/Breathe
 
-## CRITERIA 1: Description of the app, including,
+## CRITERIA 1: Description of the app
 ________________
 
 ### 2.1 Purpose
@@ -35,7 +32,35 @@ These actions are;
 Commenting on functionality and use of data types 
 We used commenting on functionality of app and use of particular data types for terminal app
   
-![Image of commenting on terminal app](./docs/image2.png)
+```ruby
+#creating User class
+class User
+  attr_accessor :username, :log
+
+  def initialize(username)
+    #runs a name_check on the username
+    @username = name_check(username)
+    #we tried array first but decided to go with hash to be able to save dates
+    @log = {}
+  end
+
+  #Method to check for valid input for the username
+  def name_check(name)
+    if name.nil? or name.empty? or name =~ /\W+/ or name == "0"
+      puts "Everyone must have a valid name."
+      #raise an error in case of invalid input
+      raise ArgumentError.new("Error - invalid name")
+    end
+    #capitalize the first letter of the name
+    name.capitalize!
+  end
+
+  def sum
+    puts "You have smoked #{log.values.inject { |a, b| a.to_i + b.to_i }} cigarettes to date! Shame on you!"
+  end
+end
+```
+
 
 
 
@@ -85,23 +110,65 @@ We had challenges creating test cases but we managed to use RSPEC to create 3 un
 ### Use of Control flow structures
   
 
-![Image of use of Control flow structure](./docs/image3.png)
+```ruby
+  puts "#{user.username}, have you smoked today? Y/N"
+  #Control flow using switch statement to make it more dry and easier to scale
+  case gets.chomp
+  when "y"
+    cig_amount(user)
+  when "n"
+    success(user)
+  else
+    #raise an error in case of incorrect input	
+    raise ArgumentError.new("Only Y or N")
+  end
+```
+
 
 
 
 ### Use of Classes
   
 
-![Image of use of Class](./docs/image4.png)
+```ruby
 
+class FileOperations
+  attr_accessor :username
 
+  def initialize(username)
+    @username = username
+  end
+
+  # Method to check if file exists, returns new instance of User class if it doesn't
+  # and retrieves the data from the file if the user already exists
+  def retrieve_data
+    File.file?("#{@username}") ? customer = read_from_file : customer = User.new(username)
+    customer
+  end
+
+  # Saves user object to file using Oj gem. We chose Oj over Nick's gists to skip the hashing process
+  def save_to_file
+    File.open("#{@username.username}", "w") { |file|
+      file.write Oj::dump username
+    }
+  end
+
+  # Reads from file
+  def read_from_file
+    Oj::load File.read("#{@username}")
+  end
+end
+```
 
 
 ### Use of Methods
-
-
+```ruby
+def success(user)
+  puts "Well done! Keep up the amazing work #{user.username}!"
+  user.log[Date.today.iso8601] = 0
+end
+```
   
-![Image of use of Method](./docs/image5.png)
 
 
 
@@ -109,8 +176,29 @@ We had challenges creating test cases but we managed to use RSPEC to create 3 un
 
 ### Use of Recursion  
   
-
-![Image of use of Recursion](./docs/image6.pmg)
+```ruby
+def smoking(user)
+  puts "#{user.username}, have you smoked today? Y/N"
+  #Control flow using switch statement to make it more dry and easier to scale
+  case gets.chomp
+  when "y"
+    cig_amount(user)
+  when "n"
+    success(user)
+  else
+    #raise an error in case of incorrect input 
+    raise ArgumentError.new("Only Y or N")
+  end
+  #rescue from the error: recurse the function
+rescue
+  begin
+    system "clear"
+    puts "Something is wrong with your input, please try again"
+    sleep(0.5)
+    smoking(user)
+  end
+end
+```
 
 ### 2.3 Instructions for use
 New and returning users
@@ -199,20 +287,12 @@ ________________
 	Researching how to structure files for GitHub repo push https://stackoverflow.com/questions/614309/ideal-ruby-project-structure
 	
 
-  
-
-![Image of SLACK communication](./docs/image12.png)
-
 ### DAY 2 (4th Sept)
 **Task**
 	Setting up GitHub repo 
 	App development
 	Creation of RSPEC unit test and user testing (Bianca and Jamie)
 	Creation of Exceptions
-	
-![Images of testing with Bianca. Jamie broke our app twice, even when he didn’t mean to!](./docs/image13.jpg)
-![Images of testing with Bianca. Jamie broke our app twice, even when he didn’t mean to!](./docs/image14.jpg)
-![Image of an edge case raising an exception](./docs/image15.png)
 
 
 ### DAY 3 (5th Sept)

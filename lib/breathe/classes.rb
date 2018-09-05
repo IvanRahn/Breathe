@@ -12,12 +12,12 @@ class User
   #Method to check for valid input for the username
   def name_check(name)
     if name.nil? or name.empty? or name =~ /\W+/ or name == "0"
-      puts "Everyone must have a valid name."
+
       #raise an error in case of invalid input
       raise ArgumentError.new("Error - invalid name")
     end
     #capitalize the first letter of the name
-    name.capitalize!
+    name = name.capitalize
   end
 
   def sum
