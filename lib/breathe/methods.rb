@@ -21,28 +21,26 @@ def smoking(user)
   when "n"
     success(user)
   else
-    #raise an error in case of incorrect input (could've used regular if/else,
-    #but due to assignment requirements we need to use exceptions somewhere)
+    #raise an error in case of incorrect input
     raise ArgumentError.new("Only Y or N")
   end
   #rescue from the error: recurse the function
 rescue
   begin
     system "clear"
-    puts "Something is wrong with your input, please try again"
+    puts "Seems like you did not reply with Y or N, please try again."
     sleep(0.5)
     smoking(user)
   end
 end
 
-#Method to prompt for number of cigarettes smoked, log it and write a message to the user
+# Method to prompt for number of cigarettes smoked, log it and write a message to the user
 def cig_amount(user)
   puts "How many cigarettes have you smoked today?"
   cigarette_amount = gets.chomp
-
   #raise an error in case of incorrect input
-  if cigarette_amount =~ /\D+/
-    raise ArgumentError.new("Seems like you're giving us some incorrect input")
+  if cigarette_amount =~ /\D+/ or cigarette_amount.start_with?("0")
+    raise ArgumentError.new("Error - incorrect input")
   end
   user.log[Date.today.iso8601] = cigarette_amount
   user.sum
@@ -50,7 +48,7 @@ def cig_amount(user)
   #rescue from the error: recurse the function
 rescue
   system "clear"
-  puts "Something seems to be wrong with your input"
+  puts "Seems like did not reply with a number, please try again"
   sleep(0.5)
   cig_amount(user)
 end
