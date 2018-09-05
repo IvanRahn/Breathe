@@ -1,5 +1,5 @@
 require_relative "classes"
-require_relative "json_to_hash"
+# require_relative "json_to_hash"
 require "date"
 require "json"
 require "Oj"
@@ -9,50 +9,45 @@ def greeting
   puts "Hey awesome to see you! What's your name?"
 end
 
+#create class for smokers that inherits from user
 #main menu method
-def menu(smoker_name)
-  puts "#{smoker_name.username}, have you smoked today? Y/N"
-  response = gets.chomp.downcase
-  puts response
-
-  if response == "y"
-    puts "How many cigarettes have you smoked today?"
-    cigarette_amount = gets.chomp.to_i
-
-    if cigarette_amount == 0
-      raise ArgumentError.new("Either you're lying or giving us incorrect input!")
-    end
-
-    smoker_name.log[Date.today.iso8601] = cigarette_amount
-    puts "You fucked up, #{smoker_name.username}!"
-  elsif response == "n"
-    puts "Well done! Keep up the amazing work #{smoker_name.username}!"
-    smoker_name.log[Date.today.iso8601] = 0
+def smoking(user)
+  puts "#{user.username}, have you smoked today? Y/N"
+  case gets.chomp
+  when "y"
+    cig_amount(user)
+  when "n"
+    success(user)
   else
     raise ArgumentError.new("Only Y or N")
   end
+rescue
+  begin
+    puts "Something is wrong with your input"
+    smoking(user)
+  end
 end
 
-def existing?(smoker)
-  File.file?("#{smoker}")
+def cig_amount(user)
+  puts "How many cigarettes have you smoked today?"
+  cigarette_amount = gets.chomp
+  if cigarette_amount =~ /\D+/
+    raise ArgumentError.new("Seems like you're giving us some incorrect input")
+  end
+  user.log[Date.today.iso8601] = cigarette_amount
+  puts "You f***d up, #{user.username}!"
+rescue
+  cig_amount(user)
 end
 
-def retrieve_data(smoker)
-  existing?(smoker) ? smoker = read_from_file(smoker) : smoker = User.new(smoker)
-  smoker
+def success(user)
+  puts "Well done! Keep up the amazing work #{user.username}!"
+  user.log[Date.today.iso8601] = 0
 end
 
 #save object to a file
-def save_to_file(object)
-  File.open("#{object.username}", "w") { |file|
-    file.write Oj::dump object
-  }
-end
 
 #read file
-def read_from_file(smoker)
-  smoker = Oj::load File.read("#{smoker}")
-end
 
 # Did you smoke in the last 24 hours?
 #   How many cigarettes did you smoke in the last 24 hours? (give range)
