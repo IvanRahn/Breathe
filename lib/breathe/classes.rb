@@ -5,7 +5,6 @@ class User
   def initialize(username)
     #runs a name_check on the username
     @username = name_check(username)
-    #we tried array first but decided to go with hash to be able to save dates
     @log = {}
   end
 
@@ -21,7 +20,12 @@ class User
   end
 
   def sum
-    puts "You have smoked #{log.values.inject { |a, b| a.to_i + b.to_i }} cigarettes to date! Shame on you!"
+    average = log.values.inject { |sum, el| sum + el }.to_f / log.values.size
+    puts log.values.last < average ? "Today you had less than your average amount! Keep up the good work!" : "You smoked more than average today, stressful day?"
+    #puts "You have smoked #{log.values.inject { |a, b| a.to_i + b.to_i }} cigarettes to date."
+  end
+
+  def average
   end
 end
 
