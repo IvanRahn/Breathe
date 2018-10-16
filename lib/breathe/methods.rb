@@ -42,9 +42,9 @@ def cig_amount(user)
   if cigarette_amount =~ /\D+/ or cigarette_amount.start_with?("0")
     raise ArgumentError.new("Error - incorrect input")
   end
-  user.log[Date.today.iso8601] = cigarette_amount
+  user.log[Date.today.iso8601] = cigarette_amount.to_i
   user.sum
-  puts "You f***d up, #{user.username}!"
+  puts "Never give up giving up!"
   #rescue from the error: recurse the function
 rescue
   system "clear"
