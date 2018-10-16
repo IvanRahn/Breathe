@@ -5,6 +5,7 @@ require "Oj"
 
 #greeting method and personalisation
 def greeting
+  system "clear"
   puts "Hey awesome to see you! What's your name?"
 end
 
@@ -17,9 +18,9 @@ def smoking(user)
   #Control flow using switch statement to make it more dry and easier to scale
   case gets.chomp
   when "y"
-    cig_amount(user)
+    user.cig_amount
   when "n"
-    success(user)
+    user.success
   else
     #raise an error in case of incorrect input
     raise ArgumentError.new("Only Y or N")
@@ -35,26 +36,5 @@ rescue
 end
 
 # Method to prompt for number of cigarettes smoked, log it and write a message to the user
-def cig_amount(user)
-  puts "How many cigarettes have you smoked today?"
-  cigarette_amount = gets.chomp
-  #raise an error in case of incorrect input
-  if cigarette_amount =~ /\D+/ or cigarette_amount.start_with?("0")
-    raise ArgumentError.new("Error - incorrect input")
-  end
-  user.log[Date.today.iso8601] = cigarette_amount.to_i
-  user.sum
-  puts "Never give up giving up!"
-  #rescue from the error: recurse the function
-rescue
-  system "clear"
-  puts "Seems like did not reply with a number, please try again"
-  sleep(0.5)
-  cig_amount(user)
-end
 
 #Method to return encouraging message to the user in case of success and log their smoking behaviour
-def success(user)
-  puts "Well done! Keep up the amazing work #{user.username}!"
-  user.log[Date.today.iso8601] = 0
-end

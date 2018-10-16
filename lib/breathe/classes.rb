@@ -18,16 +18,38 @@ class User
     #capitalize the first letter of the name
     name = name.capitalize
   end
-
-  def sum
-    average = log.values.inject { |sum, el| sum + el }.to_f / log.values.size
-    puts log.values.last < average ? "Today you had less than your average amount! Keep up the good work!" : "You smoked more than average today, stressful day?"
-    #puts "You have smoked #{log.values.inject { |a, b| a.to_i + b.to_i }} cigarettes to date."
-  end
-
+# method to puts the average amount
   def average
+    average = @log.values.inject { |sum, el| sum + el }.to_f / log.values.size
+    puts @log.values.last < average ? "Today you had less than your average amount! Keep up the good work!" : "You smoked more than average today, stressful day?"
+  end
+# reply if not smoked
+  def success
+    @log[Date.today.iso8601] = 0
+    
+ puts "Well done, #{@username}! You haven't smoked for #{@log.count {|value| value = 0}} days! "
+
+  end
+# method to get and save amount smoked
+  def cig_amount
+    puts "How many cigarettes have you smoked today?"
+    cigarette_amount = gets.chomp
+    #raise an error in case of incorrect input
+    if cigarette_amount =~ /\D+/ or cigarette_amount.start_with?("0")
+      raise ArgumentError.new("Error - incorrect input")
+    end
+    @log[Date.today.iso8601] = cigarette_amount.to_i
+    average
+    puts "Never give up giving up!"
+    #rescue from the error: recurse the function
+  rescue
+    system "clear"
+    puts "Seems like did not reply with a number, please try again"
+    sleep(0.5)
+    cig_amount(user)
   end
 end
+
 
 class FileOperations
   attr_accessor :username
