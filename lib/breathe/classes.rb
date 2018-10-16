@@ -25,14 +25,14 @@ class User
     puts @log.values.last < average ? "Today you had less than your average amount! Keep up the good work!" : "You smoked more than average today, stressful day?"
   end
 
-  # reply if not smoked
+  #Method to return encouraging message to the user in case of success and log their smoking behaviour
   def success
     @log[Date.today.iso8601] = 0
 
     puts "Well done, #{@username}! You haven't smoked for #{@log.count { |value| value = 0 }} days! "
   end
 
-  # method to get and save amount smoked
+  # Method to prompt for number of cigarettes smoked, log it and write a message to the user
   def cig_amount
     puts "How many cigarettes have you smoked today?"
     cigarette_amount = gets.chomp
