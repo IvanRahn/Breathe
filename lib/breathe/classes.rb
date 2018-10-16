@@ -18,19 +18,21 @@ class User
     #capitalize the first letter of the name
     name = name.capitalize
   end
-# method to puts the average amount
+
+  # method to puts the average amount
   def average
     average = @log.values.inject { |sum, el| sum + el }.to_f / log.values.size
     puts @log.values.last < average ? "Today you had less than your average amount! Keep up the good work!" : "You smoked more than average today, stressful day?"
   end
-# reply if not smoked
+
+  # reply if not smoked
   def success
     @log[Date.today.iso8601] = 0
-    
- puts "Well done, #{@username}! You haven't smoked for #{@log.count {|value| value = 0}} days! "
 
+    puts "Well done, #{@username}! You haven't smoked for #{@log.count { |value| value = 0 }} days! "
   end
-# method to get and save amount smoked
+
+  # method to get and save amount smoked
   def cig_amount
     puts "How many cigarettes have you smoked today?"
     cigarette_amount = gets.chomp
@@ -46,10 +48,31 @@ class User
     system "clear"
     puts "Seems like did not reply with a number, please try again"
     sleep(0.5)
-    cig_amount(user)
+    cig_amount
+  end
+
+  def smoking
+    puts "#{username}, have you smoked today? Y/N"
+    #Control flow using switch statement to make it more dry and easier to scale
+    case gets.chomp
+    when "y"
+      cig_amount
+    when "n"
+      success
+    else
+      #raise an error in case of incorrect input
+      raise ArgumentError.new("Only Y or N")
+    end
+    #rescue from the error: recurse the function
+  rescue
+    begin
+      system "clear"
+      puts "Seems like you did not reply with Y or N, please try again."
+      sleep(0.5)
+      smoking
+    end
   end
 end
-
 
 class FileOperations
   attr_accessor :username

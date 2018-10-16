@@ -9,7 +9,7 @@ begin
   customer = FileOperations.new(gets.chomp).retrieve_data
 
   # Run the method to prompt questions for smoking behaviour
-  smoking(customer)
+  customer.smoking
 
   # Save data to file
   FileOperations.new(customer).save_to_file
