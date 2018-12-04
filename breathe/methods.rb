@@ -1,4 +1,7 @@
-
+require_relative "classes"
+require "date"
+require "json"
+require "Oj"
 
 #greeting method and personalisation
 def greeting

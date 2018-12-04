@@ -1,3 +1,7 @@
+require_relative "classes"
+require "date"
+require "json"
+require "Oj"
 #creating User class
 class User
   attr_accessor :username, :log
